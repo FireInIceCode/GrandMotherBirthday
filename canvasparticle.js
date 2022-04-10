@@ -475,7 +475,7 @@ var cp = (function () {
         this.forces.push(force);
     }
 
-    World.prototype.distributePosByDistance = function (positions, time, distributefunc, sparefunc, newfunc, dis) {
+    World.prototype.distributePosByDistance = function (srcpositions, time, distributefunc, sparefunc, newfunc, dis) {
         /*
         positions:Array({x:int,y:int}) 粒子位置数组
         time:number 运动时间
@@ -484,6 +484,10 @@ var cp = (function () {
         newfunc:func(pos,time)=>void 产生新粒子
         dis:number 若不为0,则粒子间间隔为dis
         */
+		var positions=[]
+		for(var pos of srcpositions){
+			positions.push(pos);
+		}
         for (var i = 0; i < this.particles.length; i++) {
             var pa = this.particles[i];
             if (pa.isShade) continue;
